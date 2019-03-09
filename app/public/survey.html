@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <title>"I call my computer my girlfriend"</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Friend Finder</h1>
+            <hr>
+            <!-- <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a> -->
+        </div>
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><strong>Respond 1(strongly disagree) - 5(strongly agree) </strong></h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" role="form">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label>If my significant other doesn't call me before bed, I will break up with them.</label>
+                                <input type="number" class="form-control q" id="score1">
+
+                                <label>I often imagine what the world would look like if I were a dog.</label>
+                                <input type="number" class="form-control q" id="score2">
+
+                                <label>I have called my boss "mom" on several occasions.</label>
+                                <input type="number" class="form-control q" id="score3">
+
+                                <label>I enjoyed this survey.</label>
+                                <input type="number" class="form-control q" id="score4">
+
+
+
+                            </div>
+
+                        </form>
+                        <br>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                                Friend Me</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            var qClass = $(".q");
+
+            function getScore(qClass) {
+                var scores = [];
+                for (x = 0; x < qClass.length; x++) {
+                    var classy = $(qClass[x]).val();
+                    scores.push(classy);
+            
+                }
+                return scores
+            }
+
+            
+
+            var friends = [{
+                name: $("#name").val().trim(),
+                // photo: $("#photo").val().trim(),
+                scores: getScore(qClass)
+            }];
+
+        
+
+
+            // console.log(scores);
+            console.log(friends.scores);
+            
+            $.post("/api/friends", friends)
+                .then(function (data) {
+                    console.log("add.html", data);
+                });
+        });
+    </script>
+</body>
+
+</html>
