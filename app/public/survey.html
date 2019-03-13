@@ -6,102 +6,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 
     <title>"I call my computer my girlfriend"</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script>
+
+    </script> -->
+    <style>
+        label {
+      display: inline-block;
+      width: 5em;
+    }
+    </style>
 </head>
 
 <body>
+
+    <!-- 
+$color-lightblue: #088BBE;
+$color-green: #1BB6AF;
+$color-orange: #F8CD9C;
+$color-red: #EA7580;
+$color-peach: #F6A1A5;
+$color-deepviolet: #172869; -->
+
+    <style>
+        .jumbotron{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+    .card-header {
+        background-color: white;
+        text-align: center;
+    }
+
+    .showRange {
+        text-align: center;
+    }
+
+    .disagree{
+        width: 50%;
+        background-image: linear-gradient(to left, rgba(255,0,0,0),#EA7580 );
+        text-align: left;
+        padding: 2%;
+        color: white;
+    }
+
+    .agree{
+        width: 50%;
+        background-image: linear-gradient(to right, rgba(255,0,0,0),#1BB6AF );
+        text-align: right;
+        padding: 2%;
+    }
+
+
+    .flex {
+        display: flex;
+        color: white;
+    }
+
+    /* jquery tooltip */
+    .toggler { width: 500px; height: 200px; position: relative; }
+    #button { padding: .5em 1em; text-decoration: none; }
+    #effect { width: 240px;  padding: 1em; border: 1px solid #000; background: #eee; color: #333; }
+    .newClass { text-indent: 40px; letter-spacing: .4em; width: 410px; height: 120px; padding: 30px; margin: 10px; font-size: 1.1em; }
+ 
+</style>
+
+
+    <div class="jumbotron">
+        <h1>Friend Finder</h1>
+        <hr>
+        <!-- <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a> -->
+    </div>
     <div class="container">
-        <div class="jumbotron">
-            <h1>Friend Finder</h1>
-            <hr>
-            <!-- <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a> -->
-        </div>
 
         <div class="row">
 
             <div class="col-12">
 
                 <div class="card">
-                    <div class="card-header">
-                        <h3><strong>Respond 1(strongly disagree) - 5(strongly agree) </strong></h3>
-                    </div>
+                    <!-- <div class="card-header">
+                        <h3><strong>1 = Strongly Disagree and 5 = Strongly Agree </strong></h3>
+                    </div> -->
                     <div class="card-body">
                         <form method="POST" role="form">
 
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Name...</label>
                                 <input type="text" class="form-control" id="name">
                             </div>
 
                             <div class="form-group">
-                                <label for="photoLink">Add a link to your face</label>
-                                <input type="text" class="form-control" id="photoLink">
+                                <label for="photoLink">Your photo...</label>
+                                <input type="text" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
                             </div>
+
+                            <!-- need to make a seperate route to handle photo uploads (private to app -- not saved to localhost?) -->
                             <!-- <div>
                                 <label for="photoUpload">Or upload a photo</label>
                                 <input id="photoUpload" type="file" accept="image/*" onchange="selectImage(this)" />
-
                             </div> -->
-
-
                             <div class="form-group">
-                                <label>If my significant otter doesn't call me before bed, I will break up with them...</label>
-                                <input type="number" class="form-control q" id="score1">
+                                <label>I enjoy a wealthy lifestyle...</label>
+                                <!-- UI gradient -->
+                                <div class="flex">
+                                    <div class="disagree">Disagree</div>
+                                    <div class="agree">Agree</div>
+                                </div>
+                                <!-- slider results -->
+                                <p><label for="score1">Score</label><input id="score1" type="range" class="custom-range q"
+                                        min="1" max="10" id="score1">
+                                </p>
 
-                                <label>I like to imagine what the world looks like from a dog's eyes....</label>
-                                <input type="number" class="form-control q" id="score2">
 
-                                <label>I have called my boss "mom" on one too many occasions...</label>
-                                <input type="number" class="form-control q" id="score3">
-
-                                <label>I enjoyed this survey....</label>
-                                <input type="number" class="form-control q" id="score4">
 
                             </div>
-                        </form>
-                        <br>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
-                                Friend Me</button>
-                        </div>
+
+                            <div class="form-group">
+                                <label>I enjoy podcasts...</label>
+                                <!-- UI gradient -->
+                                <div class="flex">
+                                    <div class="disagree">Disagree</div>
+                                    <div class="agree">Agree</div>
+                                </div>
+                                <!-- slider results -->
+                                <div id="showRange1" class="showRange"></div>
+                                <input type="range" class="custom-range q" min="1" max="10" id="score1">
+                            </div>
+
+                            <label>I enjoy all types of conversation...</label>
+                            <input type="number" class="form-control q" min="1" max="10" id="score3">
+
+                            <label>I enjoyed this survey....</label>
+                            <input type="number" class="form-control q" min="1" max="100" id="score4">
                     </div>
+                </div>
+                </form>
+                <br>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                        Gimmie a friend</button>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
 
 
     <script type="text/javascript">
-        var photoUploads = [];
-            // get photo input
-            function selectImage(input) {
-                const reader = new FileReader();
-                reader.readAsDataURL(input.files[0]);
-                reader.onload = function (e) {
-                    console.log(e);
-                    var image = document.createElement('img');
-                    image.src = e.srcElement.result;
-                    photoUploads.push(image);
-                    $(image).attr("id", "uploaded");
-                    // $(".container").append(image);
-                }
-            }
+        // $(document).ready(function(){
+        // var photoUploads = [];
+        //     // get photo input
+        //     function selectImage(input) {
+        //         const reader = new FileReader();
+        //         reader.readAsDataURL(input.files[0]);
+        //         reader.onload = function (e) {
+        //             console.log(e);
+        //             var image = document.createElement('img');
+        //             image.src = e.srcElement.result;
+        //             photoUploads.push(image);
+        //             $(image).attr("id", "uploaded");
+        //             // $(".container").append(image);
+        //         }
+        //     }
+        //     console.log(photoUploads);
 
-            console.log(photoUploads);
+
+        $(function () {
+
+            $(document).tooltip({
+                var
+            });
+        });
+
+        // var r = $('#score1')
+        //     .on('slideStart', RGBChange)
+        //     .data('slider');
+
+        // var RGBChange = function () {
+        //     if (r.getValue() <= 5) {
+        //         $('.slider-selection').css('background', 'red');
+        //         document.getElementById("showRange1").value = r.getValue();
+        //     } else {
+        //         $('.slider-selection').css('background', 'green');
+        //         document.getElementById("lbl").value = r.getValue();
+        //     }
+
+        // };
+
+        $("#score1")
+            .change(function () {
+
+                var score1 = $("#score1").val().trim();
+                console.log(score1);
+                $("#showRange1").text(score1);
+
+            })
+            .change();
 
 
-        // enter data
+
+
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-            console.log(photoUploads);
+
+            // console.log(photoUploads);
             // console.log(photoUploads);
             var qClass = $(".q");
             var scoresArr = [];
 
             function getScore(qClass) {
-
                 for (x = 0; x < qClass.length; x++) {
                     var classy = $(qClass[x]).val();
                     scoresArr.push(classy);
@@ -109,7 +234,7 @@
                 return scoresArr
             }
             getScore(qClass);
-            console.log(scoresArr);
+            // console.log(scoresArr);
 
 
             //     Here we grab the form elements
@@ -121,9 +246,35 @@
             };
             console.log(newFriend);
 
+            // scoresArr.forEach(e => {
+            //     return parseInt(scoresArr[e]);
+            // });
+
+            // console.log(scoresArr);
+
             $.post("/api/friends", newFriend, function (data, newFriend) {
                 console.log(data);
                 console.log(newFriend);
+                // console.log(qClass);
+                // var e = getScore()
+
+                //Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5]).
+                // With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the totalDifference.
+
+                // User 1: [5, 1, 4, 4, 5]
+                // User 2: [3, 2, 6, 4, 5]
+
+                // Total Difference: 2 + 1 + 2 = 5
+
+                // Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.
+                // The closest match will be the user with the least amount of difference.
+
+
+
+                // Once you've found the current user's most compatible friend, display the result as a modal pop-up.
+
+
+                // The modal should display both the name and picture of the closest match.
                 // clears form
                 // $("#name").val("");
                 // $("#score1").val("");
@@ -132,6 +283,7 @@
                 // $("#score4").val("");
             });
         });
+        // });
     </script>
 </body>
 
