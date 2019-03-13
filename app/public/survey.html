@@ -11,19 +11,12 @@
         crossorigin="anonymous">
 
     <title>"I call my computer my girlfriend"</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- <script>
-
-    </script> -->
-    <style>
-        label {
-      display: inline-block;
-      width: 5em;
-    }
-    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 </head>
 
 <body>
@@ -48,9 +41,6 @@ $color-deepviolet: #172869; -->
         text-align: center;
     }
 
-    .showRange {
-        text-align: center;
-    }
 
     .disagree{
         width: 50%;
@@ -110,119 +100,94 @@ $color-deepviolet: #172869; -->
                                 <input type="text" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
                             </div>
 
-                            <!-- need to make a seperate route to handle photo uploads (private to app -- not saved to localhost?) -->
-                            <!-- <div>
-                                <label for="photoUpload">Or upload a photo</label>
-                                <input id="photoUpload" type="file" accept="image/*" onchange="selectImage(this)" />
-                            </div> -->
+
+
+
                             <div class="form-group">
-                                <label>I enjoy a wealthy lifestyle...</label>
+                                <h2>I enjoy a wealthy lifestyle...</h2>
+                                <div id="show1"></div>
                                 <!-- UI gradient -->
                                 <div class="flex">
                                     <div class="disagree">Disagree</div>
                                     <div class="agree">Agree</div>
                                 </div>
-                                <!-- slider results -->
-                                <p><label for="score1">Score</label><input id="score1" type="range" class="custom-range q"
-                                        min="1" max="10" id="score1">
-                                </p>
+                                <input id="score1" type="range" class="custom-range q" min="1" max="10">
 
 
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>I enjoy podcasts...</label>
+                                <h2>I enjoy podcasts...</h2>
+                                <div id="show2"></div>
                                 <!-- UI gradient -->
                                 <div class="flex">
                                     <div class="disagree">Disagree</div>
                                     <div class="agree">Agree</div>
                                 </div>
-                                <!-- slider results -->
-                                <div id="showRange1" class="showRange"></div>
-                                <input type="range" class="custom-range q" min="1" max="10" id="score1">
+                                <input type="range" class="custom-range q" min="1" max="10" id="score2">
+
+
+                                <h2>I enjoy all types of conversation...</h2>
+                                <div id="show3"></div>
+                                <!-- UI gradient -->
+                                <div class="flex">
+                                    <div class="disagree">Disagree</div>
+                                    <div class="agree">Agree</div>
+                                </div>
+                                <input type="range" class="custom-range q" min="1" max="10" id="score3">
+
+
+                                <h2>I enjoyed this survey....</h2>
+                                <div id="show4"></div>
+                                <!-- UI gradient -->
+                                <div class="flex">
+                                    <div class="disagree">Disagree</div>
+                                    <div class="agree">Agree</div>
+                                </div>
+                                <input type="range" class="custom-range q" min="1" max="100" id="score4">
+
                             </div>
-
-                            <label>I enjoy all types of conversation...</label>
-                            <input type="number" class="form-control q" min="1" max="10" id="score3">
-
-                            <label>I enjoyed this survey....</label>
-                            <input type="number" class="form-control q" min="1" max="100" id="score4">
                     </div>
-                </div>
-                </form>
-                <br>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
-                        Gimmie a friend</button>
+                    </form>
+                    <br>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                            Gimmie a friend</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     </div>
 
 
 
     <script type="text/javascript">
-        // $(document).ready(function(){
-        // var photoUploads = [];
-        //     // get photo input
-        //     function selectImage(input) {
-        //         const reader = new FileReader();
-        //         reader.readAsDataURL(input.files[0]);
-        //         reader.onload = function (e) {
-        //             console.log(e);
-        //             var image = document.createElement('img');
-        //             image.src = e.srcElement.result;
-        //             photoUploads.push(image);
-        //             $(image).attr("id", "uploaded");
-        //             // $(".container").append(image);
-        //         }
-        //     }
-        //     console.log(photoUploads);
-
-
-        $(function () {
-
-            $(document).tooltip({
-                var
-            });
-        });
-
-        // var r = $('#score1')
-        //     .on('slideStart', RGBChange)
-        //     .data('slider');
-
-        // var RGBChange = function () {
-        //     if (r.getValue() <= 5) {
-        //         $('.slider-selection').css('background', 'red');
-        //         document.getElementById("showRange1").value = r.getValue();
-        //     } else {
-        //         $('.slider-selection').css('background', 'green');
-        //         document.getElementById("lbl").value = r.getValue();
-        //     }
-
-        // };
-
         $("#score1")
             .change(function () {
-
-                var score1 = $("#score1").val().trim();
-                console.log(score1);
-                $("#showRange1").text(score1);
-
+                console.log($(this).val());
+                $("#show1").text($(this).val());
+            })
+            .change();
+        $("#score2")
+            .change(function () {
+                console.log($(this).val());
+                $("#show2").text($(this).val());
+            })
+            .change();
+        $("#score3")
+            .change(function () {
+                console.log($(this).val());
+                $("#show3").text($(this).val());
+            })
+            .change();
+        $("#score4")
+            .change(function () {
+                console.log($(this).val());
+                $("#show4").text($(this).val());
             })
             .change();
 
 
-
-
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-
-            // console.log(photoUploads);
-            // console.log(photoUploads);
             var qClass = $(".q");
             var scoresArr = [];
 
@@ -234,30 +199,21 @@ $color-deepviolet: #172869; -->
                 return scoresArr
             }
             getScore(qClass);
-            // console.log(scoresArr);
 
 
             //     Here we grab the form elements
             var newFriend = {
                 name: $("#name").val().trim(),
                 photo: $("#photoLink").val().trim(),
-                // photoupload: photoUploads,
                 scores: scoresArr
             };
             console.log(newFriend);
+            console.log(scoresArr);
 
-            // scoresArr.forEach(e => {
-            //     return parseInt(scoresArr[e]);
-            // });
-
-            // console.log(scoresArr);
 
             $.post("/api/friends", newFriend, function (data, newFriend) {
-                console.log(data);
-                console.log(newFriend);
-                // console.log(qClass);
-                // var e = getScore()
-
+                // console.log(data);
+                // console.log(newFriend);
                 //Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5]).
                 // With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the totalDifference.
 
@@ -268,19 +224,15 @@ $color-deepviolet: #172869; -->
 
                 // Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.
                 // The closest match will be the user with the least amount of difference.
-
-
-
                 // Once you've found the current user's most compatible friend, display the result as a modal pop-up.
-
 
                 // The modal should display both the name and picture of the closest match.
                 // clears form
-                // $("#name").val("");
-                // $("#score1").val("");
-                // $("#score2").val("");
-                // $("#score3").val("");
-                // $("#score4").val("");
+                $("#name").val("");
+                $("#score1").val("");
+                $("#score2").val("");
+                $("#score3").val("");
+                $("#score4").val("");
             });
         });
         // });

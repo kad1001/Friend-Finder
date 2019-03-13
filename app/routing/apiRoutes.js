@@ -16,6 +16,13 @@ module.exports = function (app) {
   // This route will also be used to handle the compatibility logic.
   app.post("/api/friends", function(req, res) {
     friendsData.push(req.body);
-    console.log(friendsData);
+    // var scores = friendsData.forEach()
+
+    var result = friendsData.map(function (x) {
+      return parseInt(x);
+    });
+  //   return parseInt(friendsData[i]);
+  // }
+  console.log(result);
   });
 };
