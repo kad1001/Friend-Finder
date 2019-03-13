@@ -208,18 +208,23 @@ $color-deepviolet: #172869; -->
                 scores: scoresArr
             };
             console.log(newFriend);
-            console.log(scoresArr);
+
+            // parse int array
+            var result = scoresArr.map(function (x) {
+                return parseInt(x);
+            });
+            console.log(result);
+
 
 
             $.post("/api/friends", newFriend, function (data, newFriend) {
                 // console.log(data);
-                // console.log(newFriend);
-                //Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5]).
-                // With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the totalDifference.
+
+                // With that done, compare the difference between current user's scores against those from other users, question by question. 
+                // Add up the differences to calculate the totalDifference.
 
                 // User 1: [5, 1, 4, 4, 5]
                 // User 2: [3, 2, 6, 4, 5]
-
                 // Total Difference: 2 + 1 + 2 = 5
 
                 // Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.
