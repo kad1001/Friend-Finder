@@ -35,22 +35,30 @@
                             </div>
 
                             <div class="form-group">
-                                <label>If my significant other doesn't call me before bed, I will break up with them.</label>
+                                <label for="photoLink">Add a link to your face</label>
+                                <input type="text" class="form-control" id="photoLink">
+                            </div>
+                            <!-- <div>
+                                <label for="photoUpload">Or upload a photo</label>
+                                <input id="photoUpload" type="file" accept="image/*" onchange="selectImage(this)" />
+
+                            </div> -->
+
+
+                            <div class="form-group">
+                                <label>If my significant otter doesn't call me before bed, I will break up with them...</label>
                                 <input type="number" class="form-control q" id="score1">
 
-                                <label>I often imagine what the world would look like if I were a dog.</label>
+                                <label>I like to imagine what the world looks like from a dog's eyes....</label>
                                 <input type="number" class="form-control q" id="score2">
 
-                                <label>I have called my boss "mom" on several occasions.</label>
+                                <label>I have called my boss "mom" on one too many occasions...</label>
                                 <input type="number" class="form-control q" id="score3">
 
-                                <label>I enjoyed this survey.</label>
+                                <label>I enjoyed this survey....</label>
                                 <input type="number" class="form-control q" id="score4">
 
-
-
                             </div>
-
                         </form>
                         <br>
                         <div class="text-right">
@@ -59,45 +67,70 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <script type="text/javascript">
-        // Question: What does this code do?
-        $("#add-btn").on("click", function (event) {
-            event.preventDefault();
-            var qClass = $(".q");
 
-            function getScore(qClass) {
-                var scores = [];
-                for (x = 0; x < qClass.length; x++) {
-                    var classy = $(qClass[x]).val();
-                    scores.push(classy);
-            
+
+    <script type="text/javascript">
+        var photoUploads = [];
+            // get photo input
+            function selectImage(input) {
+                const reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+                reader.onload = function (e) {
+                    console.log(e);
+                    var image = document.createElement('img');
+                    image.src = e.srcElement.result;
+                    photoUploads.push(image);
+                    $(image).attr("id", "uploaded");
+                    // $(".container").append(image);
                 }
-                return scores
             }
 
-            
+            console.log(photoUploads);
 
-            var friends = [{
+
+        // enter data
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            console.log(photoUploads);
+            // console.log(photoUploads);
+            var qClass = $(".q");
+            var scoresArr = [];
+
+            function getScore(qClass) {
+
+                for (x = 0; x < qClass.length; x++) {
+                    var classy = $(qClass[x]).val();
+                    scoresArr.push(classy);
+                }
+                return scoresArr
+            }
+            getScore(qClass);
+            console.log(scoresArr);
+
+
+            //     Here we grab the form elements
+            var newFriend = {
                 name: $("#name").val().trim(),
-                // photo: $("#photo").val().trim(),
-                scores: getScore(qClass)
-            }];
+                photo: $("#photoLink").val().trim(),
+                // photoupload: photoUploads,
+                scores: scoresArr
+            };
+            console.log(newFriend);
 
-        
-
-
-            // console.log(scores);
-            console.log(friends.scores);
-            
-            $.post("/api/friends", friends)
-                .then(function (data) {
-                    console.log("add.html", data);
-                });
+            $.post("/api/friends", newFriend, function (data, newFriend) {
+                console.log(data);
+                console.log(newFriend);
+                // clears form
+                // $("#name").val("");
+                // $("#score1").val("");
+                // $("#score2").val("");
+                // $("#score3").val("");
+                // $("#score4").val("");
+            });
         });
     </script>
 </body>

@@ -1,14 +1,14 @@
-// each object in array (array holds data from app) should follow this format:
-// {
-    // (raw survey results)
-//     "name": "The Rock",
-//     "photo": "https://nyppagesix.files.wordpress.com/2014/06/dwayne-johnson.jpg?quality=90&strip=all&w=1236&h=820&crop=1",
-//     "scores": [
-//         5,
-//         2,
-//         4,
-//         1,
-//         etc.
+// ===============================================================================
+// DATA
+// Below data will hold all of the user information (survey data)
+// ===============================================================================
 
-//     ]
-// }
+var friendsData = [{
+    name: "Santa Claus",
+    photo: "https://r.hswstatic.com/w_907/gif/santa-claus-orig.jpg",
+    // photoupload: "hi",
+    scores: ["5", "2", "5", "1"]
+}];
+
+// makes it accessible to other files using require.
+module.exports = friendsData;
