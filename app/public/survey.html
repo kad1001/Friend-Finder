@@ -11,12 +11,6 @@
         crossorigin="anonymous">
 
     <title>"I call my computer my girlfriend"</title>
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 </head>
 
 <body>
@@ -31,7 +25,7 @@ $color-deepviolet: #172869; -->
 
     <style>
         .jumbotron{
-    background-color: black;
+    background-color: #172869;
     color: white;
     text-align: center;
 }
@@ -60,6 +54,10 @@ $color-deepviolet: #172869; -->
 
     .flex {
         display: flex;
+        /* color: white; */
+    }
+
+    h1 {
         color: white;
     }
 
@@ -91,7 +89,7 @@ $color-deepviolet: #172869; -->
                         <form method="POST" role="form">
 
                             <div class="form-group">
-                                <label for="name">Name...</label>
+                                <label for="name">Name...  </label>
                                 <input type="text" class="form-control" id="name">
                             </div>
 
@@ -103,9 +101,10 @@ $color-deepviolet: #172869; -->
 
 
 
-                            <div class="form-group">
+                            <div class="form-group flex">
                                 <h2>I enjoy a wealthy lifestyle...</h2>
-                                <div id="show1"></div>
+                                <h2 id="show1"></h2>
+                            </div>
                                 <!-- UI gradient -->
                                 <div class="flex">
                                     <div class="disagree">Disagree</div>
@@ -219,6 +218,7 @@ $color-deepviolet: #172869; -->
 
             $.post("/api/friends", newFriend, function (data, newFriend) {
                 // console.log(data);
+                
 
                 // With that done, compare the difference between current user's scores against those from other users, question by question. 
                 // Add up the differences to calculate the totalDifference.
