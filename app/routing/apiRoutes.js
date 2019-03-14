@@ -17,36 +17,15 @@ module.exports = function (app) {
   // This route will also be used to handle the compatibility logic.
   app.post("/api/friends", function (req, res) {
     friendsData.push(req.body);
-
-
-
-    function compare(arr1, arr2) {
-      if (!arr1 || !arr2) return
-
-      let result;
-      arr1.forEach((e1, i) => arr2.forEach(e2 => {
-
-        if (e1.length > 1 && e2.length) {
-          result = compare(e1, e2);
-        } else if (e1 !== e2) {
-          result = false
-        } else {
-          result = true
-        }
-      }))
-
-      return result
-
-    }
-
-
+    // console.log(req.body.scores);
+    var current = req.body;
 
     function difference(a, b) {
-      console.log(a)
-      console.log(parseInt(a))
-
-      //  console.log(Math.abs(a - b))
       return Math.abs(a - b);
+    }
+
+    function getMin(a){
+      return Math.min(...a)
     }
 
     function getScores(item) {
@@ -58,33 +37,51 @@ module.exports = function (app) {
       return scores;
     }
 
+    // main function
     function mappin() {
       // finds the scores array in the friendsdata object
       var mapped = friendsData.map(getScores);
-      console.log(mapped);
+      console.log("all data", mapped);
+      // removes current answer from answers to compare to
+      mapped.pop();
 
-      console.log(compare(mapped[0], mapped[1]));
-      // console.log()
+      var x = getScores(current);
 
+      // EXTRACT SPECIFIC SCORES FROM CURRENT ANSWERS TO COMpare with each sepcific score in other answers
+      var a = x.slice(0,1);
+      // console.log(a);
+      var b = x.slice(1,2);
+      // console.log(b);
+      var c = x.slice(2,3);
+      var d = x.slice(3,4);
 
-      // all scores for q1
-      // var positionOne = [];
-      // var positionTwo = [];
-      // for (i = 0; i < mapped.length; i++) {
-      // var q1score = mapped[i].slice(0,1);
-      // // console.log(q1score.join())
-      // var q2score = mapped[i].slice(1,2);
+      var diffOne = [];
+      var diffTwo = [];
+      var diffThree = [];
+      var diffFour = [];
 
-      // positionOne.push(q1score);
-      // positionTwo.push(q2score);
-      // }
+      mapped.forEach(function(score){
+        var ea = score.slice(0,1);
+        var eb = score.slice(1,2);
+        var ec = score.slice(2,3);
+        var ed = score.slice(3,4);
+        // console.log("diff between each first score", difference(ea, a));
+        diffOne.push(difference(ea, a));
+        diffTwo.push(difference(eb, b));
+        diffThree.push(difference(ec, c));
+        diffFour.push(difference(ed, d));
 
-      // console.log("question 1 answers", positionOne[0]);
+      })
 
-      // console.log("question 2 answers", positionTwo);
+      console.log("differences in scores for question 1", diffOne);
+      console.log("lowest difference in scores q1:", getMin(diffOne));
+      console.log("differences in scores for question 2", diffTwo);
+      console.log("lowest difference in scores q2:", Math.min(...diffTwo))
+      console.log("lowest difference in scores q3:", Math.min(...diffThree))
+      console.log("lowest difference in scores q4:", Math.min(...diffFour))
 
-      // var r = positionOne.reduce(getSum);
-      // console.log(r);
+      // var summed = diffOne + diffTwo + diffThree + diffFour;
+      // console.log("total differences", summed)
 
       return mapped
     }
@@ -92,23 +89,7 @@ module.exports = function (app) {
     // by running this function the combined array is console logged
     mappin();
 
+    console.log(res.body)
 
-
-
-
-    //  console.log(compare([1,2,3],[1,2,3]));
-
-
-    // var result = friendsData.map(function (x) {
-    //     return parseInt(x);
-    // });
-    // console.log(result);
-
-
-    // var result = friendsData.map(function (x) {
-    //   return parseInt(x);
-    //   console.log(parseInt(x));
-    // });
-    // console.log(result);
   })
 };
