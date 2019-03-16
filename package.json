@@ -4,8 +4,8 @@
   "description": "Full-stack site that takes in results from users' surveys, then compares their answers with those from other users.",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
     "nodemon": "^1.18.10",
     "path": "^0.12.7"
   },

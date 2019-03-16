@@ -15,14 +15,6 @@
 
 <body>
 
-    <!-- 
-$color-lightblue: #088BBE;
-$color-green: #1BB6AF;
-$color-orange: #F8CD9C;
-$color-red: #EA7580;
-$color-peach: #F6A1A5;
-$color-deepviolet: #172869; -->
-
     <style>
         .jumbotron{
     background-color: #172869;
@@ -34,7 +26,6 @@ $color-deepviolet: #172869; -->
         background-color: white;
         text-align: center;
     }
-
 
     .disagree{
         width: 50%;
@@ -85,21 +76,20 @@ $color-deepviolet: #172869; -->
                     <!-- <div class="card-header">
                         <h3><strong>1 = Strongly Disagree and 5 = Strongly Agree </strong></h3>
                     </div> -->
-                    <div class="card-body">
+                    <div class="card-body form">
                         <form method="POST" role="form">
+                                <!-- <form action="/" method="POST"> -->
 
                             <div class="form-group">
                                 <label for="name">Name... </label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" name="name" id="name">
                             </div>
 
                             <div class="form-group">
                                 <label for="photoLink">Your photo...</label>
-                                <input type="text" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
+                                <input type="text" name="photo" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
                             </div>
-
-
-
+                            </form>
 
                             <div class="form-group flex">
                                 <h2>I enjoy a wealthy lifestyle...</h2>
@@ -141,12 +131,7 @@ $color-deepviolet: #172869; -->
                                 <div class="agree">Agree</div>
                             </div>
                             <input type="range" class="custom-range q" min="1" max="100" id="score4">
-
-                    </div>
-
-                    <div class="container">
-                        <h1>Your top friends are ...</h1>
-                        <div id="reqs results"></div>
+                            <!-- </form> -->
                     </div>
                 </div>
                 </form>
@@ -157,12 +142,8 @@ $color-deepviolet: #172869; -->
                 </div>
             </div>
         </div>
-        <div class="container">
-
-        </div>
     </div>
-    </div>
-    </div>
+      
 
 
 
@@ -223,71 +204,8 @@ $color-deepviolet: #172869; -->
             });
             console.log(result);
 
-
-
-
-                // var parser = new DOMParser();
-                // var newNode = parser.parseFromString(newCategory, "text/xml");
-                // stack.appendChild(newNode.documentElement);
-                // req.forEach(function(r){
-                // r.pop();
-                //  var reqs = req;
-                //  $("#reqs").append(req);
-                // console.log(req)
-                // displayed.push(req);
-                // var stack = document.getElementById(reqs);
-                // stack.insertAdjacentHTML("hi")
-                // })
-                // console.log(document.body.append(..."hello"));
-                // console.log(body)
-
-                // })
-                // console.log("Differences in other user's scores:", req);
-                // console.log(req);
-
-
-            $.post("/api/friends", newFriend, function (req, res) {
-                // console.log(data);
-                // console.log(newFriend);
-                res.json(newFriend);
-                console.log(newFriend);
-                // console.log("hi");
-
-            });
-
-            var totals = [];
-            $.get("/result", function (req, res) {
-                console.log(req);
-                var users = [];
-             
-                for (let i = 0; i < req.length; i++){
-                    // console.log(req[i]);
-                    totals.push(req[i].total);
-                    // console.log(req[i].name);
-                    users.push(req[i]);
-                }
-               
-                totals.sort();
-                console.log(users);
-                console.log(totals);
-              
-            });
-            console.log(totals)
-            $("#add-btn").text("hi");
-            var ndiv = $("<div>");
-            var contents = [];
-            
-            for (let c=0; c<totals;c++){
-                var np = $("<p>").text(totals[c]);    
-                contents.push(np);
-            }
-            ndiv.append(contents.toString());
-            console.log(ndiv);
-            $(".container").append(ndiv);
-            
-
             // clears form
-            // $("#name").val("");
+            $("#name").val("");
             $("#score1").val("");
             $("#score2").val("");
             $("#score3").val("");

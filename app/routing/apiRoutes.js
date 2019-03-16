@@ -1,103 +1,158 @@
-// LOAD DATA
+// // LOAD DATA
 var friendsData = require("../data/friends");
-var showTopMatches = [];
-
-var display = [];
-var friends = [];
-function difference(a, b) {
-  return Math.abs(a - b);
-}
+console.log(friendsData)
 
 function getSum(total, num) {
   return total + num;
 }
 
-function Friend(name, photo, scores) {
-  this.name = name;
-  this.photo = photo;
-  this.scores = scores;
-  this.newd = [];
-  this.total = 0;
-
-  this.newArray = function (current) {
-    var differences = [];
-    var w = this.scores;
-
-    for (let i = 0; i < this.scores.length; i++) {
-      var diff = difference(w[i], current[i]);
-      differences.push(diff);
-    }
-    this.newd.push(differences);
-  };
-};
-
 // ===============================================================================
 // ROUTING
-module.exports = function (app) {
-  // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
-  app.get("/api/friends", function (req, res) {
-    res.json(friendsData);
+module.exports = function(app) {
 
-    // console.log(res);
-  });
+    // Lists all friends entered
+    app.get("/", function (req, res) {
+        // Appends each Friend from friends Data to Handlebars template
+        res.render("index", { friend: friendsData})
+      });
+    
+      app.get("/survey", function(req, res){
+        //   Recieves incoming user data from /survey
+        //   friendsData.push(req.body);
+          console.log(req.body);
+      });
 
+    
+      app.post("/", function(req, res){
+        console.log(req.body);
+        friendsData.push(req.body);
+        // res.redirect("/")
+      });
 
+      
 
+        // friendsData.forEach(function(f) {
+        //   var c = new Friend(f.name, f.photo, f.scores);
+        //   friends.push(c);
+        // })
+    
+        // // current score array
+        // var cScore = req.body.scores;
+    
+        // Friend.prototype.bingbong = function(q) {
+        //   this.total = q;
+        //   return this.total;
+        // };
+    
+        // var winners = [];
+    
+        // friends.forEach(function(entry) {
+        //   console.log(entry.newArray(cScore));
+        //   var total = entry.newd[0].reduce(getSum);
+        //   console.log("the magic number:", total);
+        //   entry.bingbong(total);
+        //   winners.push(entry.total);
+        //   // console.log(entry.total)
+        // });
+        // console.log(winners);
+        // console.log(friendsData)
+    
+        // res.render("index", {friends: friendsData});
+    //   });
+    
+    // server listener
+    // app.listen(PORT, function() {
+    //   console.log("App listening on PORT: " + PORT);
+    // });
+// var friends = [];
+// function difference(a, b) {
+//   return Math.abs(a - b);
+}
 
-  // ---------------------------------------------------------------------------
-  // A POST routes /api/friends. This will be used to handle incoming survey results. 
-  // This route will also be used to handle the compatibility logic.
-  app.post("/api/friends", function (req, res) {
+// function getSum(total, num) {
+//   return total + num;
+// }
 
-    friendsData.push(req.body);
+// function Friend(name, photo, scores) {
+//   this.name = name;
+//   this.photo = photo;
+//   this.scores = scores;
+//   this.newd = [];
+//   this.total = 0;
 
-    console.log(friendsData);
-    friendsData.forEach(function (f) {
-      var c = new Friend(f.name, f.photo, f.scores);
-      friends.push(c);
-    });
+//   this.newArray = function(current) {
+//     var differences = [];
+//     var w = this.scores;
 
-    // current score array
-    var cScore = req.body.scores;
+//     for (let i = 0; i < this.scores.length; i++) {
+//       var diff = difference(w[i], current[i]);
+//       differences.push(diff);
+//     }
+//     this.newd.push(differences);
+//   };
+// }
 
+// // ===============================================================================
+// // ROUTING
+// module.exports = function(app) {
 
-      Friend.prototype.bingbong = function(q){
-        this.total = q;
-        return this.total
-    };
+//   // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
+//   app.get("/api/friends", function(req, res) {
+//     res.render("index", friendsData);
+//   });
+//   app.get("/results", function(req, res) {
+//     res.render("index", friendsData);
+//   });
 
-  
-    var winners = [];
+//   // ---------------------------------------------------------------------------
+//   // A POST routes /api/friends. This will be used to handle incoming survey results.
+//   // This route will also be used to handle the compatibility logic.
+//   // app.post("/api/friends", function(req, res) {
+//   //   friendsData.push(req.body);
 
-    friends.forEach(function (entry) {
-      console.log(entry.newArray(cScore));
+//   //   console.log(friendsData);
+//   //   // friendsData.forEach(function(f) {
+//   //   //   var c = new Friend(f.name, f.photo, f.scores);
+//   //   //   friends.push(c);
+//   //   // });
 
+//   //   // current score array
+//   //   // var cScore = req.body.scores;
 
-      var total = entry.newd[0].reduce(getSum);
-      console.log("the magic number:", total)
-      entry.bingbong(total);
-      winners.push(entry.total)
-      // console.log(entry.total)
-    });
-    console.log(winners);
-    winners.sort();
-    // winners.pop();
+//   //   Friend.prototype.bingbong = function(q) {
+//   //     this.total = q;
+//   //     return this.total;
+//   //   };
 
-    console.log(winners)
+//   //   var winners = [];
 
-    showTopMatches.push(winners);
+//   //   friends.forEach(function(entry) {
+//   //     console.log(entry.newArray(cScore));
 
+//   //     var total = entry.newd[0].reduce(getSum);
+//   //     console.log("the magic number:", total);
+//   //     entry.bingbong(total);
+//   //     winners.push(entry.total);
+//   //     // console.log(entry.total)
+//   //   });
+//   //   console.log(winners);
+//   //   console.log(friendsData)
 
-  });
+//   //   res.render(friends)
+//   // });
 
-  app.get("/result", function(req, res){
-    res.json(friends);
+//   // app.get("/results", function(req, res) {
+//   //   var data = {
+//   //     friends: []
+//   //   };
 
-  })
+//   //   data.friends.push(friendsData);
 
-
-// app.post("/result", function(req, res){
-//   display.push(req.body);
-//   console.log(display)
-// })
-};
+//   //   // for (var i = 0; i < friends.length; i+=1){
+//   //   //   var current = friends[i];
+//   //   //   data.friends.push(current);
+//   //   // }
+//   //   console.log(data)
+//   //   // res.render("index", data);
+//   // });
+// };
