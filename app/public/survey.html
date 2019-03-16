@@ -89,7 +89,7 @@ $color-deepviolet: #172869; -->
                         <form method="POST" role="form">
 
                             <div class="form-group">
-                                <label for="name">Name...  </label>
+                                <label for="name">Name... </label>
                                 <input type="text" class="form-control" id="name">
                             </div>
 
@@ -105,54 +105,62 @@ $color-deepviolet: #172869; -->
                                 <h2>I enjoy a wealthy lifestyle...</h2>
                                 <h2 id="show1"></h2>
                             </div>
-                                <!-- UI gradient -->
-                                <div class="flex">
-                                    <div class="disagree">Disagree</div>
-                                    <div class="agree">Agree</div>
-                                </div>
-                                <input id="score1" type="range" class="custom-range q" min="1" max="10">
-
-
-                                <h2>I enjoy podcasts...</h2>
-                                <div id="show2"></div>
-                                <!-- UI gradient -->
-                                <div class="flex">
-                                    <div class="disagree">Disagree</div>
-                                    <div class="agree">Agree</div>
-                                </div>
-                                <input type="range" class="custom-range q" min="1" max="10" id="score2">
-
-
-                                <h2>I enjoy all types of conversation...</h2>
-                                <div id="show3"></div>
-                                <!-- UI gradient -->
-                                <div class="flex">
-                                    <div class="disagree">Disagree</div>
-                                    <div class="agree">Agree</div>
-                                </div>
-                                <input type="range" class="custom-range q" min="1" max="10" id="score3">
-
-
-                                <h2>I enjoyed this survey....</h2>
-                                <div id="show4"></div>
-                                <!-- UI gradient -->
-                                <div class="flex">
-                                    <div class="disagree">Disagree</div>
-                                    <div class="agree">Agree</div>
-                                </div>
-                                <input type="range" class="custom-range q" min="1" max="100" id="score4">
-
+                            <!-- UI gradient -->
+                            <div class="flex">
+                                <div class="disagree">Disagree</div>
+                                <div class="agree">Agree</div>
                             </div>
+                            <input id="score1" type="range" class="custom-range q" min="1" max="10">
+
+
+                            <h2>I enjoy podcasts...</h2>
+                            <div id="show2"></div>
+                            <!-- UI gradient -->
+                            <div class="flex">
+                                <div class="disagree">Disagree</div>
+                                <div class="agree">Agree</div>
+                            </div>
+                            <input type="range" class="custom-range q" min="1" max="10" id="score2">
+
+
+                            <h2>I enjoy all types of conversation...</h2>
+                            <div id="show3"></div>
+                            <!-- UI gradient -->
+                            <div class="flex">
+                                <div class="disagree">Disagree</div>
+                                <div class="agree">Agree</div>
+                            </div>
+                            <input type="range" class="custom-range q" min="1" max="10" id="score3">
+
+
+                            <h2>I enjoyed this survey....</h2>
+                            <div id="show4"></div>
+                            <!-- UI gradient -->
+                            <div class="flex">
+                                <div class="disagree">Disagree</div>
+                                <div class="agree">Agree</div>
+                            </div>
+                            <input type="range" class="custom-range q" min="1" max="100" id="score4">
+
                     </div>
-                    </form>
-                    <br>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
-                            Gimmie a friend</button>
+
+                    <div class="container">
+                        <h1>Your top friends are ...</h1>
+                        <div id="reqs results"></div>
                     </div>
+                </div>
+                </form>
+                <br>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                        Gimmie a friend</button>
                 </div>
             </div>
         </div>
+        <div class="container">
+
+        </div>
+    </div>
     </div>
     </div>
 
@@ -189,6 +197,7 @@ $color-deepviolet: #172869; -->
             event.preventDefault();
             var qClass = $(".q");
             var scoresArr = [];
+            var displayed = [];
 
             function getScore(qClass) {
                 for (x = 0; x < qClass.length; x++) {
@@ -216,30 +225,73 @@ $color-deepviolet: #172869; -->
 
 
 
-            $.post("/api/friends", newFriend, function (data, newFriend) {
+
+                // var parser = new DOMParser();
+                // var newNode = parser.parseFromString(newCategory, "text/xml");
+                // stack.appendChild(newNode.documentElement);
+                // req.forEach(function(r){
+                // r.pop();
+                //  var reqs = req;
+                //  $("#reqs").append(req);
+                // console.log(req)
+                // displayed.push(req);
+                // var stack = document.getElementById(reqs);
+                // stack.insertAdjacentHTML("hi")
+                // })
+                // console.log(document.body.append(..."hello"));
+                // console.log(body)
+
+                // })
+                // console.log("Differences in other user's scores:", req);
+                // console.log(req);
+
+
+            $.post("/api/friends", newFriend, function (req, res) {
                 // console.log(data);
                 // console.log(newFriend);
-                
-
-                // With that done, compare the difference between current user's scores against those from other users, question by question. 
-                // Add up the differences to calculate the totalDifference.
-
-                // User 1: [5, 1, 4, 4, 5]
-                // User 2: [3, 2, 6, 4, 5]
-                // Total Difference: 2 + 1 + 2 = 5
-
-                // The closest match will be the user with the least amount of difference.
-                // Once you've found the current user's most compatible friend, display the result as a modal pop-up.
-
-                // The modal should display both the name and picture of the closest match.
+                res.json(newFriend);
+                console.log(newFriend);
+                // console.log("hi");
 
             });
-                // clears form
-                $("#name").val("");
-                $("#score1").val("");
-                $("#score2").val("");
-                $("#score3").val("");
-                $("#score4").val("");
+
+            var totals = [];
+            $.get("/result", function (req, res) {
+                console.log(req);
+                var users = [];
+             
+                for (let i = 0; i < req.length; i++){
+                    // console.log(req[i]);
+                    totals.push(req[i].total);
+                    // console.log(req[i].name);
+                    users.push(req[i]);
+                }
+               
+                totals.sort();
+                console.log(users);
+                console.log(totals);
+              
+            });
+            console.log(totals)
+            $("#add-btn").text("hi");
+            var ndiv = $("<div>");
+            var contents = [];
+            
+            for (let c=0; c<totals;c++){
+                var np = $("<p>").text(totals[c]);    
+                contents.push(np);
+            }
+            ndiv.append(contents.toString());
+            console.log(ndiv);
+            $(".container").append(ndiv);
+            
+
+            // clears form
+            // $("#name").val("");
+            $("#score1").val("");
+            $("#score2").val("");
+            $("#score3").val("");
+            $("#score4").val("");
         });
         // });
     </script>

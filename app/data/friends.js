@@ -11,7 +11,14 @@
 
 // new Friend("Johnny Applesauce", "apples", ["2", "3", "2", "4"]);
 
-
+    // function getScores(item) {
+    //   // puts the /api/friends body contents into an array for comparison
+    // //   var scores = item.scores;
+    //   for (i = 0; i < this.scores.length; i++) {
+    //     this.scores[i] = parseInt(this.scores[i])
+    //   }
+    //   console.log(this.scores);
+    // }
 
 var friendsData = [{
         name: "Santa Claus",
