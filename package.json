@@ -4,8 +4,10 @@
   "description": "Full-stack site that takes in results from users' surveys, then compares their answers with those from other users.",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "path": "^0.12.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
