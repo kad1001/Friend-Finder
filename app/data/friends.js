@@ -36,4 +36,3 @@ function Friend(name, photo, scores) {
 
 // makes it accessible to other files using require.
 module.exports = examples;
-module.exports = Friend();

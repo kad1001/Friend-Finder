@@ -1,6 +1,6 @@
 // // LOAD DATA
 var friendsData = require("../data/friends");
-console.log(friendsData)
+// console.log(friendsData.friend)
 
 function getSum(total, num) {
   return total + num;
@@ -10,24 +10,30 @@ function getSum(total, num) {
 // ROUTING
 module.exports = function(app) {
 
+  app.get("/survey", function (req, res){
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+    // res.render("index", {f})
+  })
     // Lists all friends entered
     app.get("/", function (req, res) {
         // Appends each Friend from friends Data to Handlebars template
         res.render("index", { friend: friendsData})
       });
     
-      app.get("/survey", function(req, res){
-        //   Recieves incoming user data from /survey
-        //   friendsData.push(req.body);
-          console.log(req.body);
-      });
+      // app.get("/survey", function(req, res){
+      //   //   Recieves incoming user data from /survey
+      //   //   friendsData.push(req.body);
+      //     console.log(req.body);
+      //     console.log(req.body.name);
+      // });
 
     
-      app.post("/", function(req, res){
-        console.log(req.body);
-        friendsData.push(req.body);
-        // res.redirect("/")
-      });
+      // app.post("/", function(req, res){
+      //   console.log(req.body);
+      //   friendsData.push(req.body);
+      //   // res.redirect("/")
+      // });
+    }
 
       
 
@@ -67,7 +73,7 @@ module.exports = function(app) {
 // var friends = [];
 // function difference(a, b) {
 //   return Math.abs(a - b);
-}
+// }
 
 // function getSum(total, num) {
 //   return total + num;
