@@ -1,8 +1,5 @@
 // LOAD DATA
 var friendsData = require("../data/friends");
-var showTopMatches = [];
-
-var display = [];
 var friends = [];
 function difference(a, b) {
   return Math.abs(a - b);
@@ -38,10 +35,7 @@ module.exports = function (app) {
   app.get("/api/friends", function (req, res) {
     res.json(friendsData);
 
-    // console.log(res);
   });
-
-
 
 
   // ---------------------------------------------------------------------------
@@ -59,8 +53,6 @@ module.exports = function (app) {
 
     // current score array
     var cScore = req.body.scores;
-
-
       Friend.prototype.bingbong = function(q){
         this.total = q;
         return this.total
@@ -73,26 +65,21 @@ module.exports = function (app) {
       console.log(entry.newArray(cScore));
 
 
+      // added differences between scores
       var total = entry.newd[0].reduce(getSum);
-      console.log("the magic number:", total)
+
+      console.log("the magic number:", total);
+
+      // calculate total for each entry
       entry.bingbong(total);
-      winners.push(entry.total)
-      // console.log(entry.total)
+
     });
-    console.log(winners);
-    winners.sort();
-    // winners.pop();
-
-    console.log(winners)
-
-    showTopMatches.push(winners);
-
+    console.log(friends);
 
   });
 
   app.get("/result", function(req, res){
     res.json(friends);
-
   })
 
 

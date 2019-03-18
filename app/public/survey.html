@@ -143,11 +143,6 @@ $color-deepviolet: #172869; -->
                             <input type="range" class="custom-range q" min="1" max="100" id="score4">
 
                     </div>
-
-                    <div class="container">
-                        <h1>Your top friends are ...</h1>
-                        <div id="reqs results"></div>
-                    </div>
                 </div>
                 </form>
                 <br>
@@ -157,11 +152,7 @@ $color-deepviolet: #172869; -->
                 </div>
             </div>
         </div>
-        <div class="container">
 
-        </div>
-    </div>
-    </div>
     </div>
 
 
@@ -225,66 +216,38 @@ $color-deepviolet: #172869; -->
 
 
 
-
-                // var parser = new DOMParser();
-                // var newNode = parser.parseFromString(newCategory, "text/xml");
-                // stack.appendChild(newNode.documentElement);
-                // req.forEach(function(r){
-                // r.pop();
-                //  var reqs = req;
-                //  $("#reqs").append(req);
-                // console.log(req)
-                // displayed.push(req);
-                // var stack = document.getElementById(reqs);
-                // stack.insertAdjacentHTML("hi")
-                // })
-                // console.log(document.body.append(..."hello"));
-                // console.log(body)
-
-                // })
-                // console.log("Differences in other user's scores:", req);
-                // console.log(req);
-
-
+            // append the entry to route /api/friends
             $.post("/api/friends", newFriend, function (req, res) {
-                // console.log(data);
-                // console.log(newFriend);
                 res.json(newFriend);
                 console.log(newFriend);
-                // console.log("hi");
-
+                console.log(req.body);
             });
 
-            var totals = [];
-            $.get("/result", function (req, res) {
-                console.log(req);
-                var users = [];
-             
-                for (let i = 0; i < req.length; i++){
-                    // console.log(req[i]);
-                    totals.push(req[i].total);
-                    // console.log(req[i].name);
-                    users.push(req[i]);
-                }
+      
+            // // gets result from
+            // $.get("/ap", function (req, res) {
+            //     console.log(res);
+            //     // console
+
+            //     // for (let i = 0; i < req.length; i++){
+            //     //     // alert user if the total of other users is less than 10 with their names and photos
+            //     //     // if (req[i].total <= 10) {
+            //     //     //     console.log(this.total);
+            //     //     // }
+            //     //     // console.log(req[i].total);
+            //     // //     // totals.push(req[i].total);
+            //     // //     // console.log(req[i].name);
+            //     // //     // users.push(req[i]);
+            //     // //     // console.l
+            //     // //     // alert(req[i]);
+            //     // }
                
-                totals.sort();
-                console.log(users);
-                console.log(totals);
+            //     // totals.sort();
+            //     // console.log(users);
+            //     // console.log(totals);
+            //     // alert(users);
               
-            });
-            console.log(totals)
-            $("#add-btn").text("hi");
-            var ndiv = $("<div>");
-            var contents = [];
-            
-            for (let c=0; c<totals;c++){
-                var np = $("<p>").text(totals[c]);    
-                contents.push(np);
-            }
-            ndiv.append(contents.toString());
-            console.log(ndiv);
-            $(".container").append(ndiv);
-            
+            // });
 
             // clears form
             // $("#name").val("");
