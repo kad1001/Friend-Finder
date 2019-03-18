@@ -1,19 +1,15 @@
 var express = require("express");
-// body parser for handling data parsing
-var bodyParser = require('body-parser');
-var path = require('path');
-// Tells node that we are creating an "express" server
 var app = express();
 
-// Sets an initial port. We"ll use this later in our listener
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3003;
 
-// Sets up the Express app to handle data parsing using bodyparser
-app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
-// app.use(bodyParser.text());
-// app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(express.json());
 
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // The below points our server to a series of "route" files.
 
