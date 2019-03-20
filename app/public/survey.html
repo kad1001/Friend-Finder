@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <title>"I call my computer my girlfriend"</title>
 </head>
@@ -45,66 +48,52 @@
 
     .flex {
         display: flex;
-        /* color: white; */
     }
 
     h1 {
         color: white;
     }
 
-    /* jquery tooltip */
-    .toggler { width: 500px; height: 200px; position: relative; }
-    #button { padding: .5em 1em; text-decoration: none; }
-    #effect { width: 240px;  padding: 1em; border: 1px solid #000; background: #eee; color: #333; }
-    .newClass { text-indent: 40px; letter-spacing: .4em; width: 410px; height: 120px; padding: 30px; margin: 10px; font-size: 1.1em; }
- 
+    #show1, #show2, #show3, #show4 {
+        text-align: center;
+    }
+
 </style>
 
 
     <div class="jumbotron">
         <h1>Friend Finder</h1>
         <hr>
-        <!-- <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a> -->
+
     </div>
+    <!-- Main Survey -->
     <div class="container">
-
         <div class="row">
-
             <div class="col-12">
-
                 <div class="card">
-                    <!-- <div class="card-header">
-                        <h3><strong>1 = Strongly Disagree and 5 = Strongly Agree </strong></h3>
-                    </div> -->
                     <div class="card-body">
                         <form action="/" method="POST" role="form">
-                                <!-- <form action="/" method="POST"> -->
 
-                            <!-- <div class="form-group"> -->
-                                <label for="name">Name... </label>
-                                <input type="text" class="form-control" name="name" id="name">
-                            <!-- </div> -->
+                            <label for="name">Name... </label>
+                            <input type="text" class="form-control" name="name" id="name">
 
-                            <!-- <div class="form-group"> -->
-                                <label for="photoLink">Your photo...</label>
-                                <input type="text" name="photo" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
-                            <!-- </div> -->
-         
+                            <label for="photoLink">Your photo...</label>
+                            <input type="text" name="photo" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
 
-                            <div class="form-group flex">
+                            <div class="form-group">
                                 <h2>I enjoy a wealthy lifestyle...</h2>
-                                <h2 id="show1"></h2>
+                                <h3 id="show1"></h3>
                             </div>
                             <!-- UI gradient -->
                             <div class="flex">
                                 <div class="disagree">Disagree</div>
                                 <div class="agree">Agree</div>
                             </div>
-                            <input name="score1" id="score1" type="range" class="custom-range q" min="1" max="10">
+                            <input name="score1" id="score1" type="range" class="custom-range q" min='1' max='10'>
 
 
                             <h2>I enjoy podcasts...</h2>
-                            <div id="show2"></div>
+                            <h3 id="show2"></h3>
                             <!-- UI gradient -->
                             <div class="flex">
                                 <div class="disagree">Disagree</div>
@@ -114,7 +103,7 @@
 
 
                             <h2>I enjoy all types of conversation...</h2>
-                            <div id="show3"></div>
+                            <h3 id="show3"></h3>
                             <!-- UI gradient -->
                             <div class="flex">
                                 <div class="disagree">Disagree</div>
@@ -124,7 +113,7 @@
 
 
                             <h2>I enjoyed this survey....</h2>
-                            <div id="show4"></div>
+                            <h3 id="show4"></h3>
                             <!-- UI gradient -->
                             <div class="flex">
                                 <div class="disagree">Disagree</div>
@@ -135,39 +124,75 @@
                     </div>
                 </div>
                 <br>
-                    <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
-                        Gimmie a friend</button>
-                </div>
-            </form>
+                <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>
+                    Gimmie a friend</button>
             </div>
+            </form>
         </div>
     </div>
+
+    <!-- Friend Match -->
+
+
+
+
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+      </button>
       
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="matched">
+              
+                <!-- Matched Friend Display -->
+
+            <h2>Your New Closest Friend...</h2>
+            <h4 id="friendMatch"></h4>
+            <img id="friendImg" width="600" src="">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
 
 
 
     <script type="text/javascript">
+
+        // Dynamic Range Display
         $("#score1")
             .change(function () {
-                console.log($(this).val());
                 $("#show1").text($(this).val());
             })
             .change();
         $("#score2")
             .change(function () {
-                console.log($(this).val());
                 $("#show2").text($(this).val());
             })
             .change();
         $("#score3")
             .change(function () {
-                console.log($(this).val());
                 $("#show3").text($(this).val());
             })
             .change();
         $("#score4")
             .change(function () {
-                console.log($(this).val());
                 $("#show4").text($(this).val());
             })
             .change();
@@ -189,7 +214,7 @@
             getScore(qClass);
 
 
-            //     Here we grab the form elements
+            // Here we grab the form elements
             var newFriend = {
                 name: $("#name").val().trim(),
                 photo: $("#photoLink").val().trim(),
@@ -197,48 +222,27 @@
             };
             console.log(newFriend);
 
-            // parse int array
-            var result = scoresArr.map(function (x) {
+            // parse int array for adding total
+            var parsedScores = scoresArr.map(function (x) {
                 return parseInt(x);
             });
-            console.log(result);
+            console.log(parsedScores);
 
 
 
             // append the entry to route /api/friends
-            $.post("/api/friends", newFriend, function (req, res) {
-                res.json(newFriend);
-                console.log(newFriend);
-                console.log(req.body);
+            $.post("/api/friends", newFriend)
+            // async
+            .done(function(data) {
+                console.log(data.friendName)
+                // var fImg = new Image(data.friendImg)
+                $("#friendMatch").html(data.friendName);
+                // $("#friendImg").append("src", fImg);
+           
+                $("#matched").modal('open');
             });
 
-      
-            // // gets result from
-            // $.get("/ap", function (req, res) {
-            //     console.log(res);
-            //     // console
-
-            //     // for (let i = 0; i < req.length; i++){
-            //     //     // alert user if the total of other users is less than 10 with their names and photos
-            //     //     // if (req[i].total <= 10) {
-            //     //     //     console.log(this.total);
-            //     //     // }
-            //     //     // console.log(req[i].total);
-            //     // //     // totals.push(req[i].total);
-            //     // //     // console.log(req[i].name);
-            //     // //     // users.push(req[i]);
-            //     // //     // console.l
-            //     // //     // alert(req[i]);
-            //     // }
-               
-            //     // totals.sort();
-            //     // console.log(users);
-            //     // console.log(totals);
-            //     // alert(users);
-              
-            // });
-
-            // clears form
+            // clears answers
             $("#name").val("");
             $("#score1").val("");
             $("#score2").val("");

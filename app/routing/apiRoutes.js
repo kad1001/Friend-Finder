@@ -1,33 +1,13 @@
-// // LOAD DATA
+// Example friends
 var friendsData = require("../data/friends");
+// Friend Object Constructor
+// const Friend = require("./logic");
 
 // router to export at the end
 var friends = [];
+// ?? Do I need this ?
 
-function Friend(name, photo, scores) {
-  this.name = name;
-  this.photo = photo;
-  this.scores = scores;
-  this.newd = [];
-  this.total = 0;
 
-  this.newArray = function (current) {
-    var differences = [];
-    var w = this.scores;
-
-    for (let i = 0; i < this.scores.length; i++) {
-      //   Difference between this.scores and req.body scores
-      var diff = Math.abs(w[i] - current[i]);
-      // Globalize
-      differences.push(diff);
-    }
-    this.newd.push(differences);
-  };
-}
-
-function difference(a, b) {
-  return Math.abs(a - b);
-}
 
 function getSum(total, num) {
   return total + num;
@@ -48,44 +28,82 @@ module.exports = function (app) {
   // A POST routes /api/friends. This will be used to handle incoming survey results. 
   // This route will also be used to handle the compatibility logic.
   app.post("/api/friends", function (req, res) {
+    // // add all friends to friends data
+    // friendsData.push(req.body);
 
-    friendsData.push(req.body);
-
-    console.log(friendsData);
-    friendsData.forEach(function (f) {
-      var c = new Friend(f.name, f.photo, f.scores);
-      friends.push(c);
-    });
-
-    // current score array
-    var cScore = req.body.scores;
-    Friend.prototype.bingbong = function (q) {
-      this.total = q;
-      return this.total
-    };
+    // // console.log(friendsData);
 
 
-    friends.forEach(function (entry) {
-      console.log(entry.newArray(cScore));
+    // // objectify 
+    // friendsData.forEach(function (f) {
+
+    //   var c = new Friend(f.name, f.photo, f.scores);
+    //   friends.push(c);
+    // });
 
 
-      // added differences between scores
-      var total = entry.newd[0].reduce(getSum);
+    // // current score array
+    // var cScore = req.body.scores;
 
-      console.log("the magic number:", total);
+    // Friend.prototype.bingbong = function (q) {
 
-      // calculate total for each entry
-      entry.bingbong(total);
+    //   this.total = q;
+    //   return this.total
+    // };
 
-    });
-    console.log(friends);
 
-  });
+    // // object method finds scores for the friend
+    // friends.forEach(function (entry) {
+    //   console.log(entry.newArray(cScore));
 
-  app.get("/api/friends/:name", function(req, res){
-    let name = req.params.name;
+    //   // added differences between scores
+    //   var total = entry.newd[0].reduce(getSum);
+
+    //   console.log("the magic number:", total);
+
+    //   // calculate total for each entry
+    //   entry.bingbong(total);
+    // Capture the user input object
+		var userInput = req.body;
+		// console.log('userInput = ' + JSON.stringify(userInput));
+
+    var userResponses = userInput.scores
+		// console.log('userResponses = ' + userResponses);
+
+		// Compute best friend match
+		var matchName = '';
+		var matchImage = '';
+
+		// Examine all existing friends in the list
+		for (var i = 0; i < friendsData.length; i++) {
+
+
+			// Compute differenes for each question
+		  var diff = 0;
+			for (var j = 0; j < userResponses.length; j++) {
+				diff += Math.abs(friendsData[i].scores[j] - userResponses[j]);
+      }
+      console.log(diff);
+			// console.log('diff = ' + diff);
+
+
+				console.log('Closest match found = ' + diff);
+				console.log('Friend name = ' + friendsData[i].name);
+				console.log('Friend image = ' + friendsData[i].photo);
+
+				totalDifference = diff;
+				friendName = friendsData[i].name;
+				friendImage = friendsData[i].photo;
+			// }
+		}
+
+		// Add new user
+    friendsData.push(userInput);
+  
     
-  })
 
+		// Send appropriate response
+    res.json({status: 'OK', friendName: friendName, friendImg: friendImage});
 
+    });
 }
