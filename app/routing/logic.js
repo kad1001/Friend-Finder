@@ -6,16 +6,27 @@ module.exports = function Friend(name, photo, scores) {
     this.newd = [];
     this.total = 0;
   
-    this.newArray = function (current) {
+      // Finds difference for each of the scores
+    this.newArray = function (cr) {
       var differences = [];
-      var w = this.scores;
+
+      var v = this.newd[0];
   
-      for (let i = 0; i < this.scores.length; i++) {
+      for (let i = 0; i < 4; i++) {
         //   Difference between this.scores and req.body scores
-        var diff = Math.abs(w[i] - current[i]);
+        var diff = Math.abs(v[i] - cr[i]);
+  
+        // console.log(diff);
         // Globalize
         differences.push(diff);
       }
-      this.newd.push(differences);
+      // this.newd.push(differences);
+      return this.total = differences;
     };
+
+
+    // Must be used with .map method
+    this.parsed = function(x) {
+      return parseInt(x);
+    }
   }

@@ -1,19 +1,20 @@
 var express = require("express");
 var app = express();
-var bodyParser = require('body-parser');
+
 var path = require('path');
+
+// Set up Express app, no middleware
 var PORT = process.env.PORT || 3000;
 
+// pulls from "public" directory
 app.use(express.static(process.cwd() + '/public'));
 
 // express engrine vrrom vroom
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(bodyParser.text());
-// pulls from "public" directory
 
-// The below points our server to a series of "route" files.
 
+// routing
 require(path.join(__dirname, "./app/routing/apiRoutes"))(app);
 require(path.join(__dirname, "./app/routing/htmlRoutes"))(app);
 
