@@ -1,3 +1,7 @@
+// Friend compatability logic 
+
+
+
 // Example friends
 const friendsData = require("../data/friends");
 // Friend Object Constructor
@@ -26,8 +30,6 @@ module.exports = function (app) {
     // User input
     let current = req.body;
     console.log(friendsData)
-
-    let diff = []
     const userFriend = new Friend(current.name, current.photo, current.scores);
 
 
@@ -101,7 +103,7 @@ module.exports = function (app) {
 		// Add new user
     friendsData.push(current);
 
-		// // Send response
+		// Send response to frontend in an object
     res.json({friendName: e, friendImg: i});
 
     });

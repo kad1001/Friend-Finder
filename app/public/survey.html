@@ -8,11 +8,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 
     <title>"I call my computer my girlfriend"</title>
 </head>
@@ -20,146 +24,197 @@
 <body>
 
     <style>
-        .jumbotron{
-    background-color: #172869;
-    color: white;
-    text-align: center;
-}
 
-    .card-header {
-        background-color: white;
-        text-align: center;
-    }
+        .font-weight-bold {
+            font-size: 30px;
+        }
 
-    .disagree{
-        width: 50%;
-        background-image: linear-gradient(to left, rgba(255,0,0,0),#EA7580 );
-        text-align: left;
-        padding: 2%;
-        color: white;
-    }
+        /* 'Friend Finder' Header */
+        #title {
+            background-color: #172869;
+            color: white;
+            text-align: center;
+        }
 
-    .agree{
-        width: 50%;
-        background-image: linear-gradient(to right, rgba(255,0,0,0),#1BB6AF );
-        text-align: right;
-        padding: 2%;
-    }
+        .card-header {
+            /* background-color: white; */
+            text-align: center;
+        }
+
+        .disagree {
+            width: 50%;
+            background-image: linear-gradient(to left, rgba(255, 0, 0, 0), #EA7580);
+            text-align: left;
+            padding: 2%;
+            color: white;
+        }
+
+        .agree {
+            width: 50%;
+            background-image: linear-gradient(to right, rgba(255, 0, 0, 0), #1BB6AF);
+            text-align: right;
+            padding: 2%;
+            color: darkgreen;
+        }
+/* 
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        } */
+
+        /* gradient  */
+        .flex {
+    display: flex;
+            /* width: 25%; */
+        }
 
 
-    .flex {
-        display: flex;
-    }
+        #gradient {
+            display: inline-flex;
+        }
 
-    h1 {
-        color: white;
-    }
+        h1 {
+            color: white;
+        }
 
-    #show1, #show2, #show3, #show4 {
-        text-align: center;
-    }
+        #show1,
+        #show2,
+        #show3,
+        #show4 {
+            text-align: center;
+        }
+    </style>
 
-</style>
 
-
-    <div class="jumbotron">
+    <div class="jumbotron" id="title">
         <h1>Friend Finder</h1>
-        <hr>
-
     </div>
     <!-- Main Survey -->
-    <div class="container">
+    <div class="jumbotron" id="survey">
+
         <div class="row">
             <div class="col-12">
+
                 <div class="card">
+
                     <div class="card-body">
 
                         <form action="/" method="POST" role="form">
 
-                            <label for="name">Name... </label>
-                            <input type="text" class="form-control" name="name" id="name">
-
-                            <label for="photoLink">Your photo...</label>
-                            <input type="text" name="photo" class="form-control" id="photoLink" placeholder="www.site.com/your-face">
-
-                            <div class="form-group">
-                                <h2>I enjoy a wealthy lifestyle...</h2>
-                                <h3 id="show1"></h3>
-                            </div>
-                            <!-- UI gradient -->
+                            <!-- <div class="container"> -->
                             <div class="flex">
-                                <div class="disagree">Disagree</div>
-                                <div class="agree">Agree</div>
+                                <div class="col font-weight-bold">
+                                     Name...
+                                    <!-- <label for="name">Name... </label> -->
+                         
+                                </div>
+                                <div class="col font-weight-bold">
+                                    <input type="text" class="form-control col" name="name" id="name">
+                                </div>
                             </div>
-                            <input name="score1" id="score1" type="range" class="custom-range q" min='1' max='10'>
 
-
-                            <h2>I enjoy podcasts...</h2>
-                            <h3 id="show2"></h3>
-                            <!-- UI gradient -->
                             <div class="flex">
-                                <div class="disagree">Disagree</div>
-                                <div class="agree">Agree</div>
+                                <div class="col font-weight-bold">
+                                    <!-- <label for="photoLink"> -->
+                                        Your photo...(optional)....
+                                    <!-- </label> -->
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="photo" class="form-control" id="photoLink"
+                                        placeholder="www.site.com/your-face">
+
+                                </div>
                             </div>
-                            <input name="score2" type="range" class="custom-range q" min="1" max="10" id="score2">
+                            <!-- </div> -->
+                            <div class="row">
+                                <div class="col">
+                                    <br>
+                                </div>
+                    
+                                <!-- score gradient -->
+                                <div class='col m-4' id="gradient" >
+                                    <div class="disagree">Disagree</div>
+                                    <div class="agree">Agree</div>
 
-
-                            <h2>I enjoy all types of conversation...</h2>
-                            <h3 id="show3"></h3>
-                            <!-- UI gradient -->
-                            <div class="flex">
-                                <div class="disagree">Disagree</div>
-                                <div class="agree">Agree</div>
+                                </div>
                             </div>
-                            <input name="score3" type="range" class="custom-range q" min="1" max="10" id="score3">
+                                <br>
+
+                                <!-- Survey Questions -->
+
+                                <div class="row p-4">
+                                    <h2 class="col-4">I enjoy a wealthy lifestyle...</h2>
+                                    <h3 class="col" id="show1"></h3>
+
+                                    <input name="score1" id="score1" type="range" class="custom-range q col-6" min='1'
+                                        max='10'>
+                                </div>
 
 
-                            <h2>I enjoyed this survey....</h2>
-                            <h3 id="show4"></h3>
-                            <!-- UI gradient -->
-                            <div class="flex">
-                                <div class="disagree">Disagree</div>
-                                <div class="agree">Agree</div>
+
+                                <div class="row p-4">
+                                    <h2 class="col-4">I enjoy podcasts...</h2>
+                                    <h3 class="col" id="show2"></h3>
+
+                                    <input name="score2" type="range" class="custom-range q col-6" min="1" max="10"
+                                        id="score2">
+                                </div>
+
+                                <div class="row p-4">
+                                    <h2 class="col-4">I enjoy all types of conversation...</h2>
+                                    <h3 class="col" id="show3"></h3>
+                                    <input name="score3" type="range" class="custom-range q col-6" min="1" max="10"
+                                        id="score3">
+
+                                </div>
+
+                                <div class="row p-4">
+                                    <h2 class="col-4">I enjoyed this survey....</h2>
+                                    <h3 class="col" id="show4"></h3>
+
+                                    <input type="range" class="custom-range q col-6" min="1" max="100" id="score4">
+
+                                </div>
                             </div>
-                            <input type="range" class="custom-range q" min="1" max="100" id="score4">
+                    </div>
+                    <!-- <br> -->
+                    <button data-toggle="modal" data-target="#exampleModal" type="submit" class="btn btn-primary btn-md col"
+                        id="add-btn">
+                        Gimmie a friend</button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">Friend Found!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="matched">
+
+                        <!-- Matched Friend Display -->
+
+                        <h4 id="friendMatch"></h4>
+                        <img id="friendImg" width="600" src="">
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <br>
-                <button data-toggle="modal" data-target="#exampleModal" type="submit" class="btn btn-primary btn-md" id="add-btn">
-                    Gimmie a friend</button>
             </div>
-            </form>
         </div>
-    </div>
-
-
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-
-              <h5 class="modal-title" id="exampleModalLabel">Friend Found!</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="matched">
-              
-                <!-- Matched Friend Display -->
-
-            <h4 id="friendMatch"></h4>
-            <img id="friendImg" width="600" src="">
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
     </div>
@@ -167,7 +222,6 @@
 
 
     <script type="text/javascript">
-
         // Dynamic Range Display
         $("#score1")
             .change(function () {
@@ -224,12 +278,12 @@
 
 
             // append the entry to route /api/friends
-            $.post("/api/friends", newFriend, function(data) {
+            $.post("/api/friends", newFriend, function (data) {
                 console.log(data.friendName)
-       
+
                 $("#friendMatch").html(data.friendName);
                 $("#friendImg").attr("src", friendImg);
-           
+
                 // $("#matched").modal('open');
             });
 
