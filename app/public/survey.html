@@ -18,19 +18,19 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-    <title>"I call my computer my girlfriend"</title>
+    <title>Friend Finder</title>
 </head>
 
 <body>
 
     <style>
-
         img {
             max-width: 400px;
         }
-     .modal   {
-         text-align: center;
-     }
+
+        .modal {
+            text-align: center;
+        }
 
         .font-weight-bold {
             font-size: 30px;
@@ -42,8 +42,6 @@
             color: white;
             text-align: center;
         }
-
-    
 
         .card-header {
             /* background-color: white; */
@@ -66,17 +64,9 @@
             color: darkgreen;
         }
 
-        /* 
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        } */
-
         /* gradient  */
         .flex {
             display: flex;
-            /* width: 25%; */
         }
 
 
@@ -101,7 +91,7 @@
         <h1>Friend Finder</h1>
     </div>
     <!-- Main Survey -->
-    <div class="jumbotron" id="survey">
+    <div class="container-fluid" id="survey">
 
         <div class="row">
             <div class="col-12">
@@ -112,78 +102,94 @@
 
                         <form action="/" method="POST" role="form">
 
-                            <!-- <div class="container"> -->
                             <div class="flex">
                                 <div class="col font-weight-bold">
                                     Name...
-                                    <!-- <label for="name">Name... </label> -->
 
-                                </div>
-                                <div class="col font-weight-bold">
-                                    <input type="text" class="form-control col" name="name" id="name">
+                                    <!-- </div> -->
+
+                                    <!-- <div class="col font-weight-bold"> -->
+                                    <input type="text" class="form-control" name="name" id="name">
                                 </div>
                             </div>
 
                             <div class="flex">
                                 <div class="col font-weight-bold">
-                                    <!-- <label for="photoLink"> -->
                                     Your photo...(optional)....
-                                    <!-- </label> -->
-                                </div>
-                                <div class="col">
+                                    <!-- </div> -->
+                                    <!-- <div class="col"> -->
                                     <input type="text" name="photo" class="form-control" id="photoLink"
                                         placeholder="www.site.com/your-face">
 
                                 </div>
                             </div>
-                            <!-- </div> -->
-                            <div class="row">
-                                <div class="col">
-                                    <br>
-                                </div>
+                            <br>
+
+                            <div class="row justify-content-end">
+              
 
                                 <!-- score gradient -->
-                                <div class='col m-4' id="gradient">
+                                <div class='col-md-6' id="gradient">
                                     <div class="disagree">Disagree</div>
                                     <div class="agree">Agree</div>
 
                                 </div>
+                                <div class="clearfix visible-xs-block"></div>
+
                             </div>
-                            <br>
 
                             <!-- Survey Questions -->
 
                             <div class="row p-4">
-                                <h2 class="col-4">I enjoy a wealthy lifestyle...</h2>
-                                <h3 class="col" id="show1"></h3>
+                                <!-- <div class="col flex"> -->
+                                <h2>I enjoy a wealthy lifestyle...</h2>
+                                <h3 class="col-sm" id="show1"></h3>
+                            <!-- </div> -->
+                            <div class="col-md-6">
 
-                                <input name="score1" id="score1" type="range" class="custom-range q col-6" min='1'
-                                    max='10'>
+                                <input name="score1" id="score1" type="range" class="custom-range" min='1'
+                                    max='5'>
+                            </div>
+                            <div class="clearfix visible-xs-block"></div>
+
                             </div>
 
 
 
                             <div class="row p-4">
-                                <h2 class="col-4">I enjoy podcasts...</h2>
-                                <h3 class="col" id="show2"></h3>
+                                <h2>I enjoy podcasts...</h2>
+                                <h3 class="col-sm" id="show2"></h3>
 
-                                <input name="score2" type="range" class="custom-range q col-6" min="1" max="5"
+                                <div class="col-md-6">
+                                <input name="score2" type="range" class="custom-range" min="1" max="5"
                                     id="score2">
+                                </div>
+                                
                             </div>
 
+                            <div class="clearfix visible-xs-block"></div>
+    
                             <div class="row p-4">
-                                <h2 class="col-4">I enjoy all types of conversation...</h2>
-                                <h3 class="col" id="show3"></h3>
-                                <input name="score3" type="range" class="custom-range q col-6" min="1" max="5"
+                                <h2 class="col-sm">I enjoy all types of conversation...</h2>
+                                <h3 class="col-sm" id="show3"></h3>
+
+                                <div class="col-md-6">
+                                <input name="score3" type="range" class="custom-range" min="1" max="5"
                                     id="score3">
-
+                                </div>
+                                <div class="clearfix visible-xs-block"></div>
+    
                             </div>
 
-                            <div class="row p-4">
-                                <h2 class="col-4">I enjoyed this survey....</h2>
-                                <h3 class="col" id="show4"></h3>
 
-                                <input type="range" class="custom-range q col-6" min="1" max="5" id="score4">
+                            <div class="row p-4">
+                                <h2 class="col-sm">I enjoyed this survey....</h2>
+                                <h3 class="col-sm" id="show4"></h3>
+
+                                <div class="col-md-6">
+                                <input type="range" class="custom-range" min="1" max="5" id="score4">
+                            </div>
+                            <div class="clearfix visible-xs-block"></div>
 
                             </div>
                     </div>
@@ -258,6 +264,7 @@
 
         // Submit
         $("#add-btn").on("click", function (event) {
+
             event.preventDefault();
             var qClass = $(".q");
             var scoresArr = [];
@@ -322,7 +329,6 @@
             $("#score3").val("");
             $("#score4").val("");
         });
-
     </script>
 </body>
 
