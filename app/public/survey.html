@@ -25,6 +25,13 @@
 
     <style>
 
+        img {
+            max-width: 400px;
+        }
+     .modal   {
+         text-align: center;
+     }
+
         .font-weight-bold {
             font-size: 30px;
         }
@@ -35,6 +42,8 @@
             color: white;
             text-align: center;
         }
+
+    
 
         .card-header {
             /* background-color: white; */
@@ -56,7 +65,8 @@
             padding: 2%;
             color: darkgreen;
         }
-/* 
+
+        /* 
         .clearfix::after {
             content: "";
             clear: both;
@@ -65,7 +75,7 @@
 
         /* gradient  */
         .flex {
-    display: flex;
+            display: flex;
             /* width: 25%; */
         }
 
@@ -105,9 +115,9 @@
                             <!-- <div class="container"> -->
                             <div class="flex">
                                 <div class="col font-weight-bold">
-                                     Name...
+                                    Name...
                                     <!-- <label for="name">Name... </label> -->
-                         
+
                                 </div>
                                 <div class="col font-weight-bold">
                                     <input type="text" class="form-control col" name="name" id="name">
@@ -117,7 +127,7 @@
                             <div class="flex">
                                 <div class="col font-weight-bold">
                                     <!-- <label for="photoLink"> -->
-                                        Your photo...(optional)....
+                                    Your photo...(optional)....
                                     <!-- </label> -->
                                 </div>
                                 <div class="col">
@@ -131,60 +141,59 @@
                                 <div class="col">
                                     <br>
                                 </div>
-                    
+
                                 <!-- score gradient -->
-                                <div class='col m-4' id="gradient" >
+                                <div class='col m-4' id="gradient">
                                     <div class="disagree">Disagree</div>
                                     <div class="agree">Agree</div>
 
                                 </div>
                             </div>
-                                <br>
+                            <br>
 
-                                <!-- Survey Questions -->
+                            <!-- Survey Questions -->
 
-                                <div class="row p-4">
-                                    <h2 class="col-4">I enjoy a wealthy lifestyle...</h2>
-                                    <h3 class="col" id="show1"></h3>
+                            <div class="row p-4">
+                                <h2 class="col-4">I enjoy a wealthy lifestyle...</h2>
+                                <h3 class="col" id="show1"></h3>
 
-                                    <input name="score1" id="score1" type="range" class="custom-range q col-6" min='1'
-                                        max='10'>
-                                </div>
+                                <input name="score1" id="score1" type="range" class="custom-range q col-6" min='1'
+                                    max='10'>
+                            </div>
 
 
 
-                                <div class="row p-4">
-                                    <h2 class="col-4">I enjoy podcasts...</h2>
-                                    <h3 class="col" id="show2"></h3>
+                            <div class="row p-4">
+                                <h2 class="col-4">I enjoy podcasts...</h2>
+                                <h3 class="col" id="show2"></h3>
 
-                                    <input name="score2" type="range" class="custom-range q col-6" min="1" max="5"
-                                        id="score2">
-                                </div>
+                                <input name="score2" type="range" class="custom-range q col-6" min="1" max="5"
+                                    id="score2">
+                            </div>
 
-                                <div class="row p-4">
-                                    <h2 class="col-4">I enjoy all types of conversation...</h2>
-                                    <h3 class="col" id="show3"></h3>
-                                    <input name="score3" type="range" class="custom-range q col-6" min="1" max="5"
-                                        id="score3">
+                            <div class="row p-4">
+                                <h2 class="col-4">I enjoy all types of conversation...</h2>
+                                <h3 class="col" id="show3"></h3>
+                                <input name="score3" type="range" class="custom-range q col-6" min="1" max="5"
+                                    id="score3">
 
-                                </div>
+                            </div>
 
-                                <div class="row p-4">
-                                    <h2 class="col-4">I enjoyed this survey....</h2>
-                                    <h3 class="col" id="show4"></h3>
+                            <div class="row p-4">
+                                <h2 class="col-4">I enjoyed this survey....</h2>
+                                <h3 class="col" id="show4"></h3>
 
-                                    <input type="range" class="custom-range q col-6" min="1" max="5" id="score4">
+                                <input type="range" class="custom-range q col-6" min="1" max="5" id="score4">
 
-                                </div>
                             </div>
                     </div>
-                    <!-- <br> -->
-                    <button data-toggle="modal" data-target="#exampleModal" type="submit" class="btn btn-primary btn-md col"
-                        id="add-btn">
-                        Gimmie a friend</button>
                 </div>
-                </form>
+                <!-- <br> -->
+                <button data-toggle="modal" data-target="#exampleModal" type="submit" class="btn btn-primary btn-md col"
+                    id="add-btn">
+                    Gimmie a friend</button>
             </div>
+            </form>
         </div>
 
 
@@ -206,11 +215,13 @@
                         <!-- Matched Friend Display -->
 
                         <h4 id="friendName"></h4>
-                        <img id="friendImage" width="600" src="">
+
+                        <div id="friendImage"></div>
+
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -245,6 +256,7 @@
             .change();
 
 
+        // Submit
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
             var qClass = $(".q");
@@ -281,20 +293,36 @@
             $.post("/api/friends", newFriend, function (data) {
                 console.log(data.friendName)
 
-                $("#friendName").html(data.friendName);
-                $("#friendImage").attr("src", friendImage);
+                var imagee = new Image();
 
-                // $("#matched").modal('open');
+                // Display image if present
+                if (data.friendImage) {
+                    imagee.src = data.friendImage;
+                }
+
+                // Or display an anon profile
+                else {
+                    imagee.src =
+                        "https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                }
+                $("#friendName").html(data.friendName);
+                $("#friendImage").append(imagee);
+
+                // Clears out the images
+                $("#close").click(function () {
+                    $("#friendImage").empty();
+                });
             });
 
             // clears answers
             $("#name").val("");
+            $("#photoLink").val("");
             $("#score1").val("");
             $("#score2").val("");
             $("#score3").val("");
             $("#score4").val("");
         });
-        // });
+
     </script>
 </body>
 
