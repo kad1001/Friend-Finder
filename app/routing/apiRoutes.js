@@ -88,7 +88,10 @@ module.exports = function (app) {
         // Globalize winner winner chicken dinner friend
         resr.push({
           friendName: friend.name,
-          friendImage: friend.photo
+          friendScores: friend.scores,
+          friendImage: friend.photo,
+          friendTotal: thismin,
+          userScores: current.scores
         });
       }
 

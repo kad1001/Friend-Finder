@@ -218,8 +218,18 @@
                     <div class="modal-body" id="matched">
 
                         <!-- Matched Friend Display -->
-
+               
                         <h4 id="friendName"></h4>
+                        <h4>Their scores:</h4>
+                        <h4 id="friendScores"></h4>
+
+                    
+                        <h4>Your scores:</h4>
+                        <h4 id="userScores"></h4>
+
+                
+                        <h4>Total difference:</h4>
+                        <h4 id="friendTotal"></h4>
 
                         <div id="friendImage"></div>
 
@@ -312,7 +322,10 @@
                         "https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
                 }
                 $("#friendName").html(data.friendName);
+                $("#friendScores").text(data.friendScores);
+                $("#friendTotal").text(data.friendTotal);
                 $("#friendImage").append(imagee);
+                $("#userScores").text(data.userScores)
 
                 // Clears out the images
                 $("#close").click(function () {
@@ -329,6 +342,10 @@
             $("#score4").val("");
         });
     </script>
+
+    <button>
+        <a href="/api/friends/">All Friends</a>
+    </button>
 </body>
 
 </html>
