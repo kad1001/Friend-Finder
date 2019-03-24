@@ -36,20 +36,17 @@ module.exports = function (app) {
     let parsed = userFriend.scores.map(function(x){
       return parseInt(x);
     })
-    // console.log("dd", parsed)
 
-
-    var all = [];
     for (let c = 0; c < friendsData.length; c++) {
       
       // Parses the scores for each example friend
-      var parsedScores = friendsData[c].scores.map(function (x) {
+      friendsData[c].newd.push(friendsData[c].scores.map(function (x) {
         return parseInt(x);
        })
-      //  console.log(parsedScores);
-       friendsData[c].newd.push(parsedScores);
-      //  console.log (friendsData[c]);
+       )
+
     }
+    console.log(friendsData)
 
     friendsData.forEach(function(example) {
       // console.log(example.newd[0]);
@@ -64,47 +61,55 @@ module.exports = function (app) {
 
     })
 
-    // let all = [];
-  
-    // friendsData.forEach(function(frend){
 
-    //   var w = Math.min(frend.total);
-    //   console.log("lowest", w);
-    //   all.push(w);
-    // });
+    var scorese = [];
 
-    // console.log(all)
-    // console.log(this.friendsData);
-    // Find lowest score
-
-    var friendName = [];
-    var friendImage = [];
-
-
-    // If it's less than 10
+    // If the total differences of scores is less than 10
     for (let g = 0; g < friendsData.length; g++){
-      if (friendsData[g].total < 10){
-        friendName.push(friendsData[g].name);
-        friendImage.push(friendsData[g].photo);
-      }
-
-      // else {
-      //   // No friend message :(
-      //   friendName.push("Whoops, try again.");
-      //   friendImage.push(":(");
+      // if (friendsData[g].total < 10){
+      //   friendName.push(friendsData[g].name);
+      //   friendImage.push(friendsData[g].photo);
       // }
 
-    }
+      var minimum = Math.min(friendsData[g].total);
+      console.log(minimum);
 
-    var e = friendName.pop();
-    var i = friendImage.pop();
-    console.log(i)
+      scorese.push(minimum);
+      // if (minimum) {
+      // scorea.push(({score: minimum, friendName: friendsData[g].name, friendImage: friendsData[g].photo}));
+      // }
+      // scorea.push({totalscore: minimum, friend: friendsData[g]})
+    }
+// console.log(scorea)
+console.log(scorese);
+
+    var thismin = Math.min(...scorese);
+    console.log(thismin)
+    // console.log(friendsData)
+
+    var resr = [];
+    // console
+    // const result = friendsData.total.filter(word => word.length > 6);
+    // console.log(result)
+
+    friendsData.forEach(function(friend){
+      console.log(friend);
+      console.log(friend.total)
+      if (friend.total === thismin) {
+
+        resr.push({friendName: friend.name, friendImage: friend.photo});
+      }
+    })
+    console.log(resr)
+    // var e = friendName.pop();
+    // var i = friendImage.pop();
+    // console.log(i)
 
 		// Add new user
-    friendsData.push(current);
+    // friendsData.push(current);
 
 		// Send response to frontend in an object
-    res.json({friendName: e, friendImg: i});
+    res.json(resr[0]);
 
     });
 }

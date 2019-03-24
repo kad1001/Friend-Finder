@@ -157,14 +157,14 @@
                                     <h2 class="col-4">I enjoy podcasts...</h2>
                                     <h3 class="col" id="show2"></h3>
 
-                                    <input name="score2" type="range" class="custom-range q col-6" min="1" max="10"
+                                    <input name="score2" type="range" class="custom-range q col-6" min="1" max="5"
                                         id="score2">
                                 </div>
 
                                 <div class="row p-4">
                                     <h2 class="col-4">I enjoy all types of conversation...</h2>
                                     <h3 class="col" id="show3"></h3>
-                                    <input name="score3" type="range" class="custom-range q col-6" min="1" max="10"
+                                    <input name="score3" type="range" class="custom-range q col-6" min="1" max="5"
                                         id="score3">
 
                                 </div>
@@ -173,7 +173,7 @@
                                     <h2 class="col-4">I enjoyed this survey....</h2>
                                     <h3 class="col" id="show4"></h3>
 
-                                    <input type="range" class="custom-range q col-6" min="1" max="100" id="score4">
+                                    <input type="range" class="custom-range q col-6" min="1" max="5" id="score4">
 
                                 </div>
                             </div>
@@ -205,8 +205,8 @@
 
                         <!-- Matched Friend Display -->
 
-                        <h4 id="friendMatch"></h4>
-                        <img id="friendImg" width="600" src="">
+                        <h4 id="friendName"></h4>
+                        <img id="friendImage" width="600" src="">
 
                     </div>
                     <div class="modal-footer">
@@ -281,8 +281,8 @@
             $.post("/api/friends", newFriend, function (data) {
                 console.log(data.friendName)
 
-                $("#friendMatch").html(data.friendName);
-                $("#friendImg").attr("src", friendImg);
+                $("#friendName").html(data.friendName);
+                $("#friendImage").attr("src", friendImage);
 
                 // $("#matched").modal('open');
             });
